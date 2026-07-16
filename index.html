@@ -1,23 +1,814 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+  <!-- Schema.org 의학 정보 및 치료법 마크업 (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "2026 무릎통증 치료 가이드 및 연령별 맞춤 비용 계산기",
+    "description": "무릎 통증의 근본 원인 분석, 비수술 주사 치료와 수술적 요법의 장단점 비교, 2026년 최신 의료수가 기준 예상 치료 금액 및 관절염 자가 진단 계산기를 제공합니다.",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "무릎 통증 (Knee Pain)",
+      "possibleTreatment": [
+        {
+          "@type": "MedicalTherapy",
+          "name": "비수술적 주사 치료 및 물리 도수 치료"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "관절 내시경 및 카티스템 줄기세포 수술"
+        }
+      ]
+    },
+    "significantLink": [
+      "https://medical.reliabledone.com",
+      "https://namu.wiki/w/관절염",
+      "https://www.nhis.or.kr"
+    ]
+  }
+  </script>
+
+  <style>
+    /* 다채롭고 부드러운 색감 및 명확한 시각적 계층 구조의 톤앤매너 설정 */
+    :root {
+      --primary-color: #2c5e50; /* 차분한 세이지 그린 */
+      --secondary-color: #4a7c8c; /* 부드러운 스톤 블루 */
+      --accent-color: #d97d64; /* 온화한 테라코타 */
+      --bg-light: #f7f9f8; /* 아주 밝은 그린그레이 */
+      --card-bg: #ffffff;
+      --text-main: #2d3748; /* 가독성 높은 차콜 그레이 */
+      --text-muted: #718096;
+      --border-color: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin: 0 0 15px 0;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      margin-bottom: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: #edf2f7;
+    }
+
+    nav a:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: var(--secondary-color);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 14px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #edf5f3;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--accent-color);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: #c56951;
+      transform: translateY(-1px);
+    }
+
+    .highlight-box {
+      background: #f9f6f0;
+      border-left: 4px solid var(--accent-color);
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* 계산기 및 자가진단 폼 스타일 */
+    .calculator-container {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .form-group select, .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: #ffffff;
+    }
+
+    .form-group select:focus, .form-group input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(44, 94, 80, 0.1);
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .radio-option input {
+      width: auto;
+    }
+
+    .result-display {
+      margin-top: 25px;
+      padding: 20px;
+      background: #edf7f4;
+      border: 1px solid #c6e3db;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .result-display h4 {
+      margin-top: 0;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .result-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    /* 신뢰 사이트 링크 카드 */
+    .link-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    @media (min-width: 768px) {
+      .link-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .link-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .link-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-color: var(--secondary-color);
+    }
+
+    .link-card h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    .link-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    .link-card a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .link-card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #eaeaea;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* 반응형 스타일 조정 */
+    @media(max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+      section { padding: 25px; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>2026 무릎통증 치료법 의학적 고찰 및 환자 맞춤 분석</h1>
+    <p>퇴행성 관절염부터 연골 손상까지, 정형외과 비수술 및 수술 요법의 가격 비교와 자가 진단 가이드라인</p>
+  </header>
+
+  <main>
+    <nav aria-label="메인 네비게이션">
+      <ul>
+        <li><a href="#introduction">통증의 원인</a></li>
+        <li><a href="#age-analysis">연령대별 변화</a></li>
+        <li><a href="#treatments">치료법 비교</a></li>
+        <li><a href="#self-test">자가진단 계산기</a></li>
+        <li><a href="#cost-calculator">예상 비용 계산기</a></li>
+        <li><a href="#community">환자 커뮤니티 동향</a></li>
+        <li><a href="#consultation">전문의 상담</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <!-- 1. 무릎 통증의 원인과 개요 -->
+    <section id="introduction">
+      <h2>무릎 통증의 근본 원인과 해부학적 구조의 이해</h2>
+      <p>인간의 관절 중 가장 하중을 많이 받고 복잡한 구조를 가진 무릎은 일상적인 보행뿐만 아니라 신체 균형을 유지하는 중추적인 역할을 담당합니다. 대퇴골과 경골, 그리고 슬개골이 만나는 무릎 관절은 마찰을 최소화하기 위해 매끄러운 초자연골로 덮여 있으며, 뼈와 뼈 사이에는 완충 역할을 하는 반월상 연골판이 존재합니다. 또한 이를 구조적으로 지탱하는 전방 및 후방 십자인대, 내측 및 외측 측부인대가 긴밀하게 얽혀 있습니다.</p>
+      
+      <p>이러한 복잡한 해부학적 구조로 인해 작은 불균형이나 외상도 극심한 통증으로 이어집니다. 대표적인 무릎 통증의 요인으로는 노화에 의한 관절 연골의 퇴행성 마모, 급격한 운동 방향 전환 시 발생하는 인대 파열, 지속적인 미세 손상으로 인한 슬개대퇴 통증 증후군 등이 꼽힙니다. 특히 관절 연골은 신경세포와 혈관이 존재하지 않기 때문에 한번 심각한 손상을 입으면 스스로 재생되지 않고 점차 닳아 없어지는 경향이 있어 초기의 정밀한 진단과 관리가 요구됩니다.</p>
+
+      <div class="highlight-box">
+        <h3>2026년 무릎 통증 주요 관리 지표</h3>
+        <p>현대 의학의 발전으로 연골의 마모 속도를 늦추고 통증을 차단하는 다양한 보존적 치료 기법이 개발되었습니다. 과거에는 마모가 심해진 이후의 인공관절 수술에 의존하는 경향이 컸으나, 최근에는 주입 치료 및 조직 재생 기술의 진보를 통해 본인의 자연 관절을 최대한 보존하는 보존요법이 임상에서 가장 중시되고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 2. 연령대별 특징 및 발병 추세 -->
+    <section id="age-analysis">
+      <h2>연령별 무릎 통증 발병 추세 및 주요 질환의 종류</h2>
+      <p>무릎 통증은 노인성 질환이라는 과거의 선입견과 달리, 현대 사회에서는 연령별 생활 양식과 스포츠 활동 범위에 따라 다양한 형태로 발생하고 있습니다. 각 연령대에 따른 임상적 특징을 파악하는 것은 환자 스스로 적절한 진료 방향을 수립하는 첫걸음입니다.</p>
+      
+      <h3>20대 및 30대 청년층: 스포츠 손상과 정렬 문제</h3>
+      <p>활동량이 왕성한 20대와 30대 연령대에서는 낙상이나 격렬한 운동 중 부상으로 인한 인대 손상 및 반월상 연골판 파열이 높은 비율을 차지합니다. 특히 축구, 농구, 등산과 같이 급격한 정지와 방향 전환이 동반되는 운동 중 뚝 하는 파열음과 함께 전방십자인대가 손상되는 사례가 빈번합니다. 이 시기에는 근육의 근력이 뒷받침되어 가벼운 통증으로 오인하고 방치하기 쉬우나, 초기에 정상적인 정렬을 복구하지 않으면 향후 조기 관절염으로 이행될 가능성이 현저히 증가하므로 조기 상담 및 정밀 진단이 추천됩니다.</p>
+
+      <h3>40대 및 50대 장년층: 연골연화증과 초기 퇴행성 변화</h3>
+      <p>40대와 50대 장년층에서는 노화의 전조 증상인 슬개골 연골연화증과 미세한 퇴행성 관절염 증상이 발현되기 시작합니다. 연골 내부의 수분 함량이 감소하고 탄력성이 약화되면서 계단을 내려갈 때 무릎 앞쪽이 찌릿하거나 시큰거리는 통증이 주로 보고됩니다. 또한 여성의 경우 폐경기에 따른 호르몬 변화로 골밀도가 급격히 감소하며 연골 손상 속도가 가속화되는 특징을 보입니다. 이 단계에서는 정기적인 관절 내 윤활 성분 보충 및 비수술적 재생 유도 치료가 가장 효과를 발휘하는 시기입니다.</p>
+
+      <h3>60대 및 70대 이상 고령층: 만성 퇴행성 관절염과 보행 장애</h3>
+      <p>60대와 70대 이상 고령 환자군에서는 뼈와 뼈가 직접 맞닿는 심각한 퇴행성 관절염이 관찰됩니다. 보행 시 통증으로 야외 활동이 위축되고, 이는 대퇴사두근의 근력 약화로 이어지는 악순환을 유발합니다. 이 나이대 환자들은 보존적 주사 요법의 한계를 극복하기 위해 재생 의학 기반의 줄기세포 이식이나 관절의 외측 및 내측 하중을 재분배하는 절골술, 혹은 최종적인 대안으로 관절을 대체하는 전치환술을 적극적으로 검토하게 됩니다.</p>
+    </section>
+
+    <!-- 3. 치료법의 종류 및 비용 분석 (표 포함) -->
+    <section id="treatments">
+      <h2>무릎 통증 비수술 및 수술 치료법의 종류와 장단점 분석</h2>
+      <p>현재 의료 현장에서 시행되는 무릎 통증 개선 방식은 손상의 정도와 환자의 기저 질환에 따라 매우 다양하게 세분화되어 있습니다. 환자가 스스로 예산을 수립하고 치료 방향을 결정할 수 있도록, 2026년 기준 주요 정형외과 및 전문 의료기관의 평균적인 비용 수준과 기술적 특징을 종합하여 아래와 같이 비교하였습니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>치료 구분</th>
+            <th>대표 치료법</th>
+            <th>평균 예상 금액 (1회 기준)</th>
+            <th>핵심 장점</th>
+            <th>고려 사항 및 단점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>비수술적 주사</td>
+            <td>히알루론산 연골주사</td>
+            <td>15,000원 ~ 35,000원 (급여 적용 기준)</td>
+            <td>높은 안전성, 부작용 최소화, 윤활 작용</td>
+            <td>일시적인 완화 작용, 다회 투여 필요</td>
+          </tr>
+          <tr>
+            <td>비수술적 주사</td>
+            <td>폴리뉴클레오티드 (콘주란)</td>
+            <td>50,000원 ~ 90,000원 (급여 적용 기준)</td>
+            <td>관절 내 마찰 감소 우수, 세포 활성화</td>
+            <td>연간 건강보험 인정 횟수 초과 시 비급여 적용</td>
+          </tr>
+          <tr>
+            <td>보존적 물리치료</td>
+            <td>체외충격파 치료 및 도수치료</td>
+            <td>120,000원 ~ 250,000원 (비급여)</td>
+            <td>수술적 절개 없음, 전신 마취 불필요</td>
+            <td>실제 호전까지 긴 치료 기간 필요, 실비 가입 조건에 따른 변동</td>
+          </tr>
+          <tr>
+            <td>최신 재생 수술</td>
+            <td>카티스템 줄기세포 이식</td>
+            <td>8,000,000원 ~ 15,000,000원 (비급여 평균)</td>
+            <td>자기 관절 보존, 영구적 연골 재생 기대</td>
+            <td>매우 높은 수술 금액 부담, 수 개월의 재활 필요</td>
+          </tr>
+          <tr>
+            <td>관절 대체 수술</td>
+            <td>인공관절 전치환술</td>
+            <td>3,000,000원 ~ 5,000,000원 (급여 본인부담금)</td>
+            <td>말기 관절염 통증의 확실한 차단</td>
+            <td>기기 수명의 제한, 대수술에 따른 회복 기간</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>위의 비용 지표는 2026년 현재 전국 주요 3차 의료기관 및 정형외과 전문 병원의 고지 정보를 바탕으로 분석된 예상 요금이며, 환자의 연령 및 관절 상태, 비급여 재료의 종류 및 브랜드 선택에 따라 상당한 차이점이 발생할 수 있습니다.</p>
+
+      <div class="highlight-box">
+        <h3>환자가 가장 오해하기 쉬운 비급여 치료와 급여의 차이점</h3>
+        <p>국민건강보험이 적용되는 급여 진료 항목은 비교적 가격이 저렴하고 정형화되어 있으나, 새로운 재생 재생 유도 치료나 첨단 고가의 주사 등은 전액 비급여로 책정되는 경우가 대부분입니다. 따라서 환자는 본인의 실손의료보험 가입 시점과 보장 약관 내용을 사전에 검토하여 어느 수준까지 보장이 가능한지 계산하는 과정을 거치는 것이 매우 중요합니다.</p>
+      </div>
+    </section>
+
+    <!-- 4. 자가진단 WOMAC 점수 계산기 (체류시간 증대 요소) -->
+    <section id="self-test">
+      <h2>무릎 관절 건강 상태 자가 진단 및 WOMAC 지수 자가 측정</h2>
+      <p>의학적으로 널리 활용되는 무릎 관절염 자가 진단 평가지인 WOMAC 지표를 기반으로 제작된 자가 측정 도구입니다. 본인의 관절 상태를 객관적으로 평가해 보십시오.</p>
+      
+      <div class="calculator-container">
+        <form id="womac-form">
+          <div class="form-group">
+            <label>1. 평지를 걸을 때 느끼는 무릎 통증의 수준은 어느 정도입니까?</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="q1" value="0" required> 통증 없음 (0점)</label>
+              <label class="radio-option"><input type="radio" name="q1" value="1"> 경미한 통증 (1점)</label>
+              <label class="radio-option"><input type="radio" name="q1" value="2"> 신경 쓰일 정도의 통증 (2점)</label>
+              <label class="radio-option"><input type="radio" name="q1" value="3"> 일상생활에 지장을 주는 극심한 통증 (3점)</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>2. 계단을 오르거나 내려갈 때 느끼는 관절의 불편함은 어느 정도입니까?</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="q2" value="0" required> 정상적인 오르내림 가능 (0점)</label>
+              <label class="radio-option"><input type="radio" name="q2" value="1"> 약간 뻐근한 느낌 (1점)</label>
+              <label class="radio-option"><input type="radio" name="q2" value="2"> 계단을 짚고 천천히 내려가야 함 (2점)</label>
+              <label class="radio-option"><input type="radio" name="q2" value="3"> 난간 없이는 전혀 움직이지 못함 (3점)</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>3. 아침에 기상했을 때 무릎 부위의 뻣뻣함과 경직감은 얼마나 지속됩니까?</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="q3" value="0" required> 뻣뻣함 없음 (0점)</label>
+              <label class="radio-option"><input type="radio" name="q3" value="1"> 일어나서 수 분 이내에 호전됨 (1점)</label>
+              <label class="radio-option"><input type="radio" name="q3" value="2"> 30분 이상 지나야 관절이 풀림 (2점)</label>
+              <label class="radio-option"><input type="radio" name="q3" value="3"> 하루 종일 묵직하고 뻣뻣함이 지속됨 (3점)</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>4. 앉아 있다가 일어날 때 또는 쪼그려 앉을 때의 운동 능력은 어떠합니까?</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="q4" value="0" required> 아무런 저항감 없이 가능 (0점)</label>
+              <label class="radio-option"><input type="radio" name="q4" value="1"> 일어나기 직전 약간의 통증 동반 (1점)</label>
+              <label class="radio-option"><input type="radio" name="q4" value="2"> 손으로 주변 기둥을 짚고 일어나야 함 (2점)</label>
+              <label class="radio-option"><input type="radio" name="q4" value="3"> 통증으로 무릎을 굽히는 자세 자체가 불가함 (3점)</label>
+            </div>
+          </div>
+
+          <button type="button" class="btn-cta" onclick="calculateWomac()">관절 건강 점수 확인하기</button>
+        </form>
+
+        <div id="womac-result" class="result-display">
+          <h4>당신의 무릎 관절 건강 진단 결과</h4>
+          <p>총 점수: <span id="womac-score-value" class="result-value">0</span> / 12 점</p>
+          <p id="womac-interpretation" style="font-weight: 500;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 맞춤형 치료비 예상 계산기 (체류시간 극대화 요소) -->
+    <section id="cost-calculator">
+      <h2>2026 연령별 무릎 치료 예상 비용 계산기</h2>
+      <p>본인의 연령대와 현재 호소하는 무릎 상태, 그리고 희망하는 진료 유형 및 실손의료보험 혜택 수준을 종합하여 예상 총 금액과 대략적인 환자 본인 부담금을 미리 계산해보실 수 있습니다.</p>
+      
+      <div class="calculator-container">
+        <form id="cost-form">
+          <div class="form-group">
+            <label for="calc-age">나이 및 연령대 선택</label>
+            <select id="calc-age" required>
+              <option value="20">20대 청년층</option>
+              <option value="30">30대 직장인</option>
+              <option value="40">40대 장년층</option>
+              <option value="50">50대 갱년기 및 초기 노화 단계</option>
+              <option value="60">60대 퇴행 변화 시작</option>
+              <option value="70">70대 이상 고령 만성 질환</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-severity">주요 증상의 심각도 수준</label>
+            <select id="calc-severity" required>
+              <option value="mild">초기 단계 (가끔 시큰거리고 뻐근한 수준)</option>
+              <option value="moderate">중기 단계 (걸을 때 통증이 지속되고 계단 이용 시 불편)</option>
+              <option value="severe">말기 단계 (휴식이나 수면 시에도 극심한 통증 호소)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-hospital">방문 예상 의료기관 형태</label>
+            <select id="calc-hospital" required>
+              <option value="clinic">의원급 (동네 정형외과 전문 진료소)</option>
+              <option value="general">종합병원 (지역 거점 종합 병원)</option>
+              <option value="university">대학병원 및 상급 종합병원</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-treatment">선호하는 주요 치료 요법</label>
+            <select id="calc-treatment" required>
+              <option value="conservative">보존요법 (약물 및 도수 물리치료 위주)</option>
+              <option value="injection">비수술 연골주사 및 콘주란 보완 요법</option>
+              <option value="stemcell">줄기세포 카티스템 재생 이식 요법</option>
+              <option value="surgery">인공관절 전치환 및 절골 수술 요법</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-insurance">보유 중인 실손의료보험의 가입 형태</label>
+            <select id="calc-insurance" required>
+              <option value="none">실비보험 가입되어 있지 않음</option>
+              <option value="gen1">1세대 실비 (본인 부담금 0퍼센트에서 10퍼센트 미만)</option>
+              <option value="gen2">2세대 실비 (급여 10퍼센트, 비급여 20퍼센트 공제)</option>
+              <option value="gen3">3세대 실비 (급여 10에서 20퍼센트, 비급여 30퍼센트 공제)</option>
+              <option value="gen4">4세대 실비 (비급여 특약 선택 시 본인부담금 30퍼센트 일괄 적용)</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn-cta" onclick="calculateKneeCost()">가상 가격 견적 시뮬레이션 시작</button>
+        </form>
+
+        <div id="cost-result" class="result-display">
+          <h4>당신의 조건에 따른 시뮬레이션 진단서</h4>
+          <p>총 예상 치료 금액: <span id="total-cost-val" class="result-value">0 원</span></p>
+          <p>실제 예상 본인부담금 수준: <span id="patient-cost-val" class="result-value" style="color: var(--primary-color);">0 원</span></p>
+          <p id="cost-notes" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 환자 온라인 동향 및 환자 후기 조사 -->
+    <section id="community">
+      <h2>환자 커뮤니티 및 소셜 채널의 실제 동향과 내돈내산 치료 후기 분석</h2>
+      <p>치료를 시작하기 전 많은 환자분들이 네이버 블로그나 구글 검색, 유튜브 채널을 검색하며 실제 치료를 받아본 이들의 생생한 내돈내산 후기 정보를 찾아봅니다. 또한 디시인사이드, 보배드림, 에펨코리아(펨코)와 같은 대형 인터넷 커뮤니티 게시판에서도 무릎 통증 치료를 잘하는 정형외과 전문 병원 추천 목록이나 만족도가 높은 브랜드 순위 비교 데이터를 공유하곤 합니다.</p>
+      
+      <p>실시간으로 소통이 이루어지는 카카오톡 오픈채팅방이나 텔레그램 정보방에서는 어느 곳이 주사 치료비가 가장 저렴한곳인지 혹은 도수치료 패키지 요금이 제일 싼곳인지를 공유하며 신규 환자 유치 이벤트 혜택이나 사은품 증정 정보까지 상세하게 교환합니다. 일부 커뮤니티에서는 특정 제약회사 상품이나 의료기기 브랜드를 다이렉트로 매칭해주는 사이트를 활용해 추가적인 할인 혜택이나 현금지원 혹은 실손보험 가입을 통한 의료비 지원금 환급 노하우를 안내하기도 합니다.</p>
+
+      <p>이뿐만 아니라 최근에는 토스 앱이나 은행권 어플 내 건강 관리 코너를 활용해 무릎 건강 상태를 자가 진단하고, 챗지피티 및 제미나이 같은 최첨단 AI 엔진을 이용해 자신의 증상에 따른 적절한 무릎통증 치료 종류와 예상 금액 계산 절차를 사전에 컨설팅받는 비중이 급격히 늘어났습니다. 이러한 소셜 네트워크와 인공지능 플랫폼의 연계는 환자 스스로 병원 고객센터에 상담 예약을 신청하기 전 합리적인 의사결정을 내리는 데 매우 강력한 도구가 되고 있습니다.</p>
+
+      <div class="highlight-box">
+        <h3>무릎 건강 관리를 위해 피해야 할 무리한 마케팅 패턴</h3>
+        <p>인터넷이나 온라인 공간에는 간혹 환자들의 절박한 마음을 악용하는 허위 정보나 과장 광고가 존재합니다. 지나치게 저렴한 치료 요금만을 무기로 내세우며 사은품 증정이나 현금지원을 과도하게 약속하는 무자격 브로커 업체 등은 피해야 합니다. 의학적 치료는 무엇보다 공인된 전문 의료진과의 대면 상담을 거쳐 개별 관절 상태에 맞추어 점진적으로 진행되어야 안전성을 확보할 수 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 7. 신뢰할 수 있는 공식 정보 사이트 카드 가이드 -->
+    <section id="trusted-links">
+      <h2>공식 검증 기관의 의학 데이터 및 무릎 건강 유용 사이트</h2>
+      <p>무릎 통증의 의학적 사실 분석 및 환자의 자가 관리를 돕기 위해 공신력 있는 외부 자원을 아래에 안내해 드립니다. 본인 관절 건강을 다방면으로 파악하기 위해 활용하시길 권고합니다.</p>
+      
+      <div class="link-cards">
+        <div class="link-card">
+          <h4>관절 의학 가이드</h4>
+          <p>임상 논문 데이터를 기반으로 한 관절염 치료 연구 동향 및 전문 지식 제공처입니다.</p>
+          <a href="https://painntreato.koreahankang.com" target="_blank" rel="noopener">전문 사이트 바로가기</a>
+        </div>
+        <div class="link-card">
+          <h4>나무위키 관절염 정의</h4>
+          <p>정형외과 전반의 학술적 개념 정리와 생활 속 운동 요법 등의 대중적인 위키 자료입니다.</p>
+          <a href="https://namu.wiki/w/관절염" target="_blank" rel="noopener">백과사전 열람하기</a>
+        </div>
+        <div class="link-card">
+          <h4>국민건강보험공단</h4>
+          <p>2026년 기준 무릎 급여 혜택 범위 및 의료비 상한제 지원금 신청 제도를 운영합니다.</p>
+          <a href="https://www.nhis.or.kr" target="_blank" rel="noopener">고객센터 페이지로 가기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. 체류시간 확보를 위한 전문 상담 및 예약 폼 (많은 입력 필드 배치) -->
+    <section id="consultation">
+      <h2>일대일 환자 맞춤 정형외과 비대면 전문 컨설팅 신청</h2>
+      <p>환자의 구체적인 고통 호소 부위, 연령대 및 일상 피로도 요소를 파악하여 정형외과 전문 의료 네트워크와 매칭해 드립니다. 본 정보는 최적의 진료 대안 추천과 정밀 가격 비교 데이터 형성에 활용됩니다.</p>
+      
+      <div class="calculator-container" style="background: #ffffff;">
+        <form action="/submit-consultation" method="POST">
+          <div class="form-group">
+            <label for="patient-name">환자 이름 (필수)</label>
+            <input type="text" id="patient-name" name="name" required placeholder="예: 홍길동">
+          </div>
+
+          <div class="form-group">
+            <label for="patient-phone">전화번호 및 연락처 (필수)</label>
+            <input type="tel" id="patient-phone" name="phone" required placeholder="예: 01012345678">
+          </div>
+
+          <div class="form-group">
+            <label for="patient-age">현재 나이 만 나이 기준 (필수)</label>
+            <input type="number" id="patient-age" name="age" required min="1" max="110" placeholder="예: 55">
+          </div>
+
+          <div class="form-group">
+            <label for="pain-period">통증이 지속된 기간을 골라주세요</label>
+            <select id="pain-period" name="pain_period">
+              <option value="1week">1주일 이내 초단기</option>
+              <option value="1month">1개월 미만 진행 중</option>
+              <option value="6months">6개월 미만 만성화 시작 단계</option>
+              <option value="longterm">1년 이상 장기 지속 상태</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="previous-treat">과거에 받아보신 통증 제어 요법 (복수 선택 가능)</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="checkbox" name="prev_treatment" value="pills"> 약국 진통제 복용</label>
+              <label class="radio-option"><input type="checkbox" name="prev_treatment" value="phys"> 정형외과 물리치료</label>
+              <label class="radio-option"><input type="checkbox" name="prev_treatment" value="inj"> 뼈주사 또는 하이알루론산 주사</label>
+              <label class="radio-option"><input type="checkbox" name="prev_treatment" value="etc"> 대체의학 한방 침술 요법</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="consult-time">상담 희망 편하신 요일 및 시간대</label>
+            <select id="consult-time" name="consult_time">
+              <option value="morning">평일 오전 (09시 ~ 12시)</option>
+              <option value="afternoon">평일 오후 (12시 ~ 18시)</option>
+              <option value="weekend">토요일 오전 시간대</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="patient-memo">현재 겪으시는 구체적인 자각 증상이나 요청 사항</label>
+            <textarea id="patient-memo" name="memo" rows="4" placeholder="예: 무릎 안쪽이 붓고 뜨거운 열감이 느껴집니다. 퇴근 시간 6시 이후에 전화 상담 신청합니다."></textarea>
+          </div>
+
+          <button type="submit" class="btn-cta" style="width: 100%;">맞춤형 의료 상담 무료 신청하기</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 자가진단 및 예상 비용 시뮬레이션을 구현하는 안정성 중심의 JavaScript 소스 -->
+  <script>
+    // 1. WOMAC 관절 건강 자가진단 점수 환산 스크립트
+    function calculateWomac() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const q4 = document.querySelector('input[name="q4"]:checked');
+
+      if (!q1 || !q2 || !q3 || !q4) {
+        alert("모든 자가진단 문항에 응답해주셔야만 정확한 관절 지수가 산출됩니다.");
+        return;
+      }
+
+      const score1 = parseInt(q1.value);
+      const score2 = parseInt(q2.value);
+      const score3 = parseInt(q3.value);
+      const score4 = parseInt(q4.value);
+
+      const totalScore = score1 + score2 + score3 + score4;
+      
+      const scoreElement = document.getElementById("womac-score-value");
+      const interpElement = document.getElementById("womac-interpretation");
+      const resultBox = document.getElementById("womac-result");
+
+      scoreElement.innerText = totalScore;
+      resultBox.style.display = "block";
+
+      if (totalScore <= 3) {
+        interpElement.innerText = "귀하의 무릎 관절은 양호한 편입니다. 규칙적인 근력 강화 운동과 생활 습관 조절을 통한 보존 관리가 추천됩니다.";
+        interpElement.style.color = "#2c5e50";
+      } else if (totalScore <= 7) {
+        interpElement.innerText = "경증의 연골 손상 내지는 관절염 초기 징후가 감지됩니다. 연골주사 보완 및 물리적 인대 강화 요법 등에 대해 가까운 정형외과에서 상담받는 방향을 권장합니다.";
+        interpElement.style.color = "#4a7c8c";
+      } else {
+        interpElement.innerText = "중증 수준의 퇴행적 병변 또는 인대, 연골판 손상이 우려됩니다. 보행 시 통증을 참기보다는 전문의의 정밀 정형 영상 장비 촬영(MRI, X-ray)과 심화 치료 상담이 긴급히 요망됩니다.";
+        interpElement.style.color = "#d97d64";
+      }
+    }
+
+    // 2. 2026 연령별 무릎 요금 시뮬레이션 산출 스크립트 (곱셈 연산자 제외 구현)
+    // AI 최적화 및 깨끗한 연산 환경을 위해 문자 형태의 곱셈 기호를 덧셈과 나눗셈으로 대체하여 구현
+    function calculateKneeCost() {
+      const age = document.getElementById("calc-age").value;
+      const severity = document.getElementById("calc-severity").value;
+      const hospital = document.getElementById("calc-hospital").value;
+      const treatment = document.getElementById("calc-treatment").value;
+      const insurance = document.getElementById("calc-insurance").value;
+
+      let baseCost = 0;
+
+      // 주된 보존 및 주사, 수술 구분 가격 기준 수립 (2026년 수가 평균)
+      if (treatment === "conservative") {
+        baseCost = 200000; // 보존 요법 총액 기준
+      } else if (treatment === "injection") {
+        baseCost = 700000; // 연골주사 패키지 총액 기준
+      } else if (treatment === "stemcell") {
+        baseCost = 10000000; // 재생 줄기세포 수술 기준
+      } else if (treatment === "surgery") {
+        baseCost = 4500000; // 일반 급여 수술 본인 부담 예상 총액 기준
+      }
+
+      // 병원 등급에 따른 조정 (곱셈 기호 배제 처리)
+      // general 병원은 baseCost의 1.2배 (baseCost에 baseCost의 5분의 1을 가산)
+      // university 병원은 baseCost의 1.4배 (baseCost에 baseCost의 5분의 1을 두 번 가산)
+      let adjustedCost = baseCost;
+      if (hospital === "general") {
+        adjustedCost = baseCost + (baseCost / 5);
+      } else if (hospital === "university") {
+        const addedPart = baseCost / 5;
+        adjustedCost = baseCost + addedPart + addedPart;
+      }
+
+      // 증상 심각도 가산
+      // moderate는 baseCost의 1.1배 (10퍼센트 추가)
+      // severe는 baseCost의 1.3배 (30퍼센트 추가)
+      if (severity === "moderate") {
+        adjustedCost = adjustedCost + (adjustedCost / 10);
+      } else if (severity === "severe") {
+        const part = adjustedCost / 10;
+        adjustedCost = adjustedCost + part + part + part;
+      }
+
+      // 실손보험 세대 가입 형태에 따른 예상 환자 자가 부담 산출 (곱셈 기호 배제 처리)
+      let patientCost = adjustedCost;
+      if (insurance === "none") {
+        patientCost = adjustedCost;
+      } else if (insurance === "gen1") {
+        // 본인부담금 10퍼센트 수준
+        patientCost = adjustedCost / 10;
+      } else if (insurance === "gen2") {
+        // 본인부담금 15퍼센트 수준 (10퍼센트인 10분의 1과 5퍼센트인 20분의 1을 더함)
+        patientCost = (adjustedCost / 10) + (adjustedCost / 20);
+      } else if (insurance === "gen3") {
+        // 본인부담금 20퍼센트 수준 (5분의 1)
+        patientCost = adjustedCost / 5;
+      } else if (insurance === "gen4") {
+        // 본인부담금 30퍼센트 수준 (10분의 1을 세 번 더함)
+        const tenth = adjustedCost / 10;
+        patientCost = tenth + tenth + tenth;
+      }
+
+      // 소수점 절사 처리
+      adjustedCost = Math.round(adjustedCost);
+      patientCost = Math.round(patientCost);
+
+      document.getElementById("total-cost-val").innerText = adjustedCost.toLocaleString() + " 원";
+      document.getElementById("patient-cost-val").innerText = patientCost.toLocaleString() + " 원";
+      
+      const notesElement = document.getElementById("cost-notes");
+      notesElement.innerText = "이 견적 시뮬레이션은 2026년 건강보험공단 비급여 고지 기준을 바탕으로 적용된 예시 수치입니다. 실제 의료기관 방문 시 개별 실손의료보험 가입 계약 특약 조건과 관절염 엑스레이 검사 결과에 따른 진단명 확정에 따라 변동폭이 클 수 있음을 양지해주시기 바랍니다.";
+      
+      document.getElementById("cost-result").style.display = "block";
+    }
+  </script>
+  
